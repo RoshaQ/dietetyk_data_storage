@@ -41,8 +41,8 @@ public class KlientEntity implements Serializable {
 
 	@Column(nullable = false, length = 11)
 	private int wzrost;
-	
-	@Column(nullable= true, length = 12)
+
+	@Column(nullable = true, length = 12)
 	private String telefon;
 
 	public static class KlientEntityBuilder {
@@ -62,35 +62,33 @@ public class KlientEntity implements Serializable {
 		private int wzrost;
 
 		private String telefon;
-		
-		
-		public KlientEntityBuilder id(long id){
+
+		public KlientEntityBuilder id(long id) {
 			this.id = id;
 			return this;
 		}
-		
-		public KlientEntityBuilder imie(String imie){
+
+		public KlientEntityBuilder imie(String imie) {
 			this.imie = imie;
 			return this;
 		}
-		
-		public KlientEntityBuilder nazwisko(String nazwisko){
+
+		public KlientEntityBuilder nazwisko(String nazwisko) {
 			this.nazwisko = nazwisko;
 			return this;
 		}
-		
-		public KlientEntityBuilder wiek(int wiek){
+
+		public KlientEntityBuilder wiek(int wiek) {
 			this.wiek = wiek;
 			return this;
 		}
-		
 
-		public KlientEntityBuilder telefon(String telefon){
+		public KlientEntityBuilder telefon(String telefon) {
 			this.telefon = telefon;
 			return this;
 		}
-		
-		public KlientEntity build(){
+
+		public KlientEntity build() {
 			return new KlientEntity(this);
 		}
 	}
