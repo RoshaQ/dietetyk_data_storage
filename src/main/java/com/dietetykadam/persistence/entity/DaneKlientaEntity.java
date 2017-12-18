@@ -1,4 +1,4 @@
-package com.dietetykadam.domain;
+package com.dietetykadam.persistence.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

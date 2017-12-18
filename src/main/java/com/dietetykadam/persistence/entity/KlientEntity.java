@@ -1,4 +1,4 @@
-package com.dietetykadam.domain;
+package com.dietetykadam.persistence.entity;
 
 import java.io.Serializable;
 
@@ -28,6 +28,7 @@ public class KlientEntity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	
 	private long id;
 
 	@Column(nullable = false, length = 45)
