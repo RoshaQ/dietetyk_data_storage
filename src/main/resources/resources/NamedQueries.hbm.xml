@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<!-- ======================================================================
+    Dies ist eine Hibernate-Mapping Datei. Sie wird automatisch von JPA gefunden.
+
+    Diese Mapping-Datei ist nicht fuer das Mapping von Entitäten
+    vorgesehen. Entitäts-Mappings werden ueber Annotationen definiert.
+    Diese Datei ist fuer die Ablage von Query-Definitionen vorgesehen.
+
+    Wann immer moeglich, sollte fuer Queries die JPQL (Java Persistence Query
+    Language) verwendet werden.
+
+    Native SQL ist nur fuer Sonderfaelle zu verwenden, etwa wenn Oracle
+    SQL Index Hints gegeben werden muessen.
+    ====================================================================== -->
+
+<hibernate-mapping default-lazy="true">
+</hibernate-mapping>

@@ -1,29 +1,30 @@
 package com.dietetykadam.persistence.entity;
 
 import java.io.Serializable;
-
+import java.util.Collection;
 import javax.persistence.*;
 
 import lombok.*;
 
 @Entity
-@Table(name = "klient")
+@Table(name = "client")
 @Setter
 @Getter
-public class KlientEntity implements Serializable {
+public class ClientEntity implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public KlientEntity(KlientEntityBuilder builder) {
+	public ClientEntity(ClientEntityBuilder builder) {
 		this.id = builder.id;
 		this.imie = builder.imie;
 		this.nazwisko = builder.nazwisko;
 		this.wiek = builder.wiek;
 		this.wzrost = builder.wzrost;
 		this.telefon = builder.telefon;
+		this.dataClientEntities = builder.dataClientEntities;
 	}
 
 	@Id
@@ -45,10 +46,14 @@ public class KlientEntity implements Serializable {
 
 	@Column(nullable = true, length = 12)
 	private String telefon;
+	
+	@OneToMany(mappedBy="client", cascade = CascadeType.ALL)
+	private Collection<DataClientEntity> dataClientEntities;
+	
 
-	public static class KlientEntityBuilder {
+	public static class ClientEntityBuilder {
 
-		public KlientEntityBuilder() {
+		public ClientEntityBuilder() {
 
 		}
 
@@ -63,34 +68,41 @@ public class KlientEntity implements Serializable {
 		private int wzrost;
 
 		private String telefon;
+		
+		private Collection<DataClientEntity> dataClientEntities;
 
-		public KlientEntityBuilder id(long id) {
+		public ClientEntityBuilder id(long id) {
 			this.id = id;
 			return this;
 		}
 
-		public KlientEntityBuilder imie(String imie) {
+		public ClientEntityBuilder imie(String imie) {
 			this.imie = imie;
 			return this;
 		}
 
-		public KlientEntityBuilder nazwisko(String nazwisko) {
+		public ClientEntityBuilder nazwisko(String nazwisko) {
 			this.nazwisko = nazwisko;
 			return this;
 		}
 
-		public KlientEntityBuilder wiek(int wiek) {
+		public ClientEntityBuilder wiek(int wiek) {
 			this.wiek = wiek;
 			return this;
 		}
 
-		public KlientEntityBuilder telefon(String telefon) {
+		public ClientEntityBuilder telefon(String telefon) {
 			this.telefon = telefon;
 			return this;
 		}
+		
+		public ClientEntityBuilder dataClientEntities(Collection<DataClientEntity> dataClientEntieties){
+			this.dataClientEntities = dataClientEntieties;
+			return this;
+		}
 
-		public KlientEntity build() {
-			return new KlientEntity(this);
+		public ClientEntity build() {
+			return new ClientEntity(this);
 		}
 	}
 

@@ -8,21 +8,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "dane_klienta")
+@Table(name = "data_client")
 @Setter
 @Getter
-public class DaneKlientaEntity implements Serializable {
+public class DataClientEntity implements Serializable {
 
-	public DaneKlientaEntity(DaneKlientaEntityBuilder builder) {
+	public DataClientEntity(DataClientEntityBuilder builder) {
 		this.id = builder.id;
+		this.client = builder.client;
 		this.idKlienta = builder.idKlienta;
-		this.data = builder.data;
+		this.dataPomiaru = builder.dataPomiaru;
 		this.masaMiesni = builder.masaMiesni;
 		this.tkankaTluszczowaWKilogramach = builder.tkankaTluszczowaWKilogramach;
 		this.tkankaTluszczowaWProcentach = builder.tkankaTluszczowaWProcentach;
@@ -40,14 +44,18 @@ public class DaneKlientaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	@ManyToOne
+	private ClientEntity client;
+	
 	@Column(name = "id_klienta", nullable = false)
 	private long idKlienta;
 
 	@Column(nullable = false, length = 5)
 	private double waga;
 
-	@Column(nullable = false)
-	private LocalDateTime data;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_pomiaru", columnDefinition = "DATE", nullable = false)
+	private LocalDateTime dataPomiaru;
 
 	@Column(name = "tkanka_tluszczowa_procent", nullable = true, length = 4)
 	private double tkankaTluszczowaWProcentach;
@@ -64,19 +72,21 @@ public class DaneKlientaEntity implements Serializable {
 	@Column(name = "wiceralna_tkanka_tluszczowa", nullable = true, length = 11)
 	private int wisceralnaTkankaTluszczowa;
 
-	public static class DaneKlientaEntityBuilder{
-		
-		public DaneKlientaEntityBuilder() {
+	public static class DataClientEntityBuilder {
+
+		public DataClientEntityBuilder() {
 
 		}
 
 		private long id;
+		
+		private ClientEntity client;
 
 		private long idKlienta;
 
 		private double waga;
 
-		private LocalDateTime data;
+		private LocalDateTime dataPomiaru;
 
 		private double tkankaTluszczowaWProcentach;
 
@@ -88,53 +98,58 @@ public class DaneKlientaEntity implements Serializable {
 
 		private int wisceralnaTkankaTluszczowa;
 
-		public DaneKlientaEntityBuilder id(long id) {
+		public DataClientEntityBuilder id(long id) {
 			this.id = id;
 			return this;
 		}
+		
+		public DataClientEntityBuilder client(ClientEntity client){
+			this.client = client;
+			return this;
+		}
 
-		public DaneKlientaEntityBuilder idKlienta(long idKlienta) {
+		public DataClientEntityBuilder idKlienta(long idKlienta) {
 			this.idKlienta = idKlienta;
 			return this;
 		}
 
-		public DaneKlientaEntityBuilder waga(double waga) {
+		public DataClientEntityBuilder waga(double waga) {
 			this.waga = waga;
 			return this;
 		}
 
-		public DaneKlientaEntityBuilder data(LocalDateTime data) {
-			this.data = data;
+		public DataClientEntityBuilder dataPomiaru(LocalDateTime dataPomiaru) {
+			this.dataPomiaru = dataPomiaru;
 			return this;
 		}
-		
-		public DaneKlientaEntityBuilder tkankaTluszczowaWProcentach(double tkankaTluszczowaWProcentach) {
+
+		public DataClientEntityBuilder tkankaTluszczowaWProcentach(double tkankaTluszczowaWProcentach) {
 			this.tkankaTluszczowaWProcentach = tkankaTluszczowaWProcentach;
 			return this;
 		}
-		
-		public DaneKlientaEntityBuilder tkankaTluszczowaWKilogramach(double tkankaTluszczowaWKilogramach) {
+
+		public DataClientEntityBuilder tkankaTluszczowaWKilogramach(double tkankaTluszczowaWKilogramach) {
 			this.tkankaTluszczowaWKilogramach = tkankaTluszczowaWKilogramach;
 			return this;
 		}
-		
-		public DaneKlientaEntityBuilder zawartoscWodyWProcentach(double zawartoscWodyWProcentach) {
+
+		public DataClientEntityBuilder zawartoscWodyWProcentach(double zawartoscWodyWProcentach) {
 			this.zawartoscWodyWProcentach = zawartoscWodyWProcentach;
 			return this;
 		}
-		
-		public DaneKlientaEntityBuilder masaMiesni(double masaMiesni) {
+
+		public DataClientEntityBuilder masaMiesni(double masaMiesni) {
 			this.masaMiesni = masaMiesni;
 			return this;
 		}
-		
-		public DaneKlientaEntityBuilder wisceralnaTkankaTluszczowa(int wisceralnaTkankaTluszczowa) {
+
+		public DataClientEntityBuilder wisceralnaTkankaTluszczowa(int wisceralnaTkankaTluszczowa) {
 			this.wisceralnaTkankaTluszczowa = wisceralnaTkankaTluszczowa;
 			return this;
 		}
 
-		public DaneKlientaEntity build() {
-			return new DaneKlientaEntity(this);
+		public DataClientEntity build() {
+			return new DataClientEntity(this);
 		}
 	}
 }
